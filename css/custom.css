@@ -15,6 +15,7 @@
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     color: #333;
+    font-weight: 700;
 }
 
 .dark-theme .album-header h1 {
@@ -35,19 +36,21 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
 }
 
 .tag-btn {
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     border: 1px solid #ddd;
     background-color: #fff;
     color: #333;
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .dark-theme .tag-btn {
@@ -58,6 +61,8 @@
 
 .tag-btn:hover {
     background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dark-theme .tag-btn:hover {
@@ -68,6 +73,7 @@
     background-color: #2d96bd;
     color: #fff;
     border-color: #2d96bd;
+    box-shadow: 0 4px 8px rgba(45, 150, 189, 0.3);
 }
 
 .dark-theme .tag-btn.active {
@@ -78,35 +84,48 @@
 .photo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
 
 /* 图片项 */
 .photo-item {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #fff;
+}
+
+.dark-theme .photo-item {
+    background: #333;
 }
 
 .photo-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
 }
 
 .photo-item img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    transition: all 0.5s ease;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
 
 .photo-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 /* 图片覆盖层 */
@@ -115,16 +134,23 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: white;
-    padding: 1rem;
+    padding: 2rem 1.5rem 1.5rem;
     text-align: left;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
 }
 
 .photo-item:hover .photo-overlay {
     opacity: 1;
+}
+
+.photo-overlay span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* 模态框样式 */
@@ -139,16 +165,31 @@
     height: 100%;
     overflow: auto;
     background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(5px);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 700px;
-    max-height: 80vh;
+    width: 85%;
+    max-width: 800px;
+    max-height: 85vh;
     object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: modalContentIn 0.4s ease;
+}
+
+@keyframes modalContentIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 #caption {
@@ -157,37 +198,245 @@
     width: 80%;
     max-width: 700px;
     text-align: center;
-    color: #ccc;
-    padding: 10px 0;
-    height: 150px;
+    color: #fff;
+    padding: 20px 0;
+    height: auto;
+    font-size: 1.1rem;
 }
 
 .close {
     position: absolute;
-    top: 15px;
-    right: 35px;
+    top: 25px;
+    right: 45px;
     color: #f1f1f1;
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     cursor: pointer;
+    opacity: 0.8;
 }
 
 .close:hover,
 .close:focus {
-    color: #bbb;
+    color: #fff;
     text-decoration: none;
-    cursor: pointer;
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+/* 日志区域样式 */
+.blog-section {
+    max-width: 1200px;
+    margin: 4rem auto 2rem;
+    padding: 0 1rem;
+}
+
+.blog-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.blog-header h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.dark-theme .blog-header h2 {
+    color: #fff;
+}
+
+.blog-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.dark-theme .blog-header p {
+    color: #aaa;
+}
+
+.blog-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.blog-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.dark-theme .blog-card {
+    background: #333;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.blog-card-content {
+    padding: 1.5rem;
+}
+
+.blog-card-date {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.dark-theme .blog-card-date {
+    color: #aaa;
+}
+
+.blog-card-title {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.dark-theme .blog-card-title {
+    color: #fff;
+}
+
+.blog-card-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-card-title a:hover {
+    color: #2d96bd;
+}
+
+.dark-theme .blog-card-title a:hover {
+    color: #3aafd9;
+}
+
+.blog-card-excerpt {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.dark-theme .blog-card-excerpt {
+    color: #bbb;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: #2d96bd;
+    color: #fff;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.read-more:hover {
+    background: transparent;
+    color: #2d96bd;
+    border-color: #2d96bd;
+}
+
+.dark-theme .read-more:hover {
+    color: #3aafd9;
+    border-color: #3aafd9;
+}
+
+.view-all-posts {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.view-all-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: #2d96bd;
+    border: 2px solid #2d96bd;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background: #2d96bd;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(45, 150, 189, 0.3);
+}
+
+.dark-theme .view-all-btn {
+    color: #3aafd9;
+    border-color: #3aafd9;
+}
+
+.dark-theme .view-all-btn:hover {
+    background: #3aafd9;
+    color: #fff;
 }
 
 /* 响应式设计 */
 @media screen and (max-width: 768px) {
     .album-header h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
-    .photo-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    .blog-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .photo-grid,
+    .blog-list {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .photo-item img {
+        height: 200px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .close {
+        font-size: 35px;
+        top: 15px;
+        right: 25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .album-container,
+    .blog-section {
+        padding: 1rem;
+    }
+    
+    .album-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .blog-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .photo-grid,
+    .blog-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
     }
     
@@ -195,23 +444,16 @@
         height: 150px;
     }
     
-    .modal-content {
-        width: 95%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .photo-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 0.5rem;
-    }
-    
-    .photo-item img {
-        height: 120px;
-    }
-    
     .tag-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .blog-card-content {
+        padding: 1.2rem;
+    }
+    
+    .blog-card-title {
+        font-size: 1.1rem;
     }
 }
