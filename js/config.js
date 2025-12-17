@@ -9,6 +9,17 @@ const config = {
         { src: "/image/album/life/photo5.jpg", alt: "生活照片5", tag: "life" },
         { src: "/image/album/life/photo6.jpg", alt: "生活照片6", tag: "life" },
         { src: "/image/album/life/photo7.jpg", alt: "生活照片7", tag: "life" },
+        { src: "/image/album/life/photo8.jpg", alt: "生活照片1", tag: "life" },
+        { src: "/image/album/life/photo9.jpg", alt: "生活照片2", tag: "life" },
+        { src: "/image/album/life/photo10.jpg", alt: "生活照片3", tag: "life" },
+        { src: "/image/album/life/photo11.jpg", alt: "生活照片4", tag: "life" },
+        { src: "/image/album/life/photo12.jpg", alt: "生活照片5", tag: "life" },
+        { src: "/image/album/life/photo13.jpg", alt: "生活照片6", tag: "life" },
+        { src: "/image/album/life/photo14.jpg", alt: "生活照片7", tag: "life" },
+        { src: "/image/album/life/photo15.jpg", alt: "生活照片1", tag: "life" },
+        { src: "/image/album/life/photo16.jpg", alt: "生活照片2", tag: "life" },
+        { src: "/image/album/life/photo17.jpg", alt: "生活照片3", tag: "life" },
+        { src: "/image/album/life/photo18.jpg", alt: "生活照片4", tag: "life" },
         // 可以继续添加更多图片，按照photoN.jpg的格式命名
     ],
     videos: [
