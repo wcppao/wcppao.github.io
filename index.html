@@ -30,6 +30,7 @@
 
     <!-- scripts list from _config.yml -->
     
+    <script src="/js/config.js"></script>
     <script src="/js/script.js"></script>
     
     <script src="/js/tocbot.min.js"></script>
@@ -126,7 +127,8 @@
                 <div>
                     <a href="/">我的相册博客</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+76; Menu</div>
             </div>
             <div class="menu" id="mobile-menu">
                 
@@ -163,159 +165,343 @@
             <p>记录生活中的美好瞬间</p>
         </div>
         
-        <!-- 相册分类标签 -->
-        <div class="album-tags">
-            <button class="tag-btn active" data-tag="all">全部</button>
-            <button class="tag-btn" data-tag="travel">旅行</button>
-            <button class="tag-btn" data-tag="life">生活</button>
-            <button class="tag-btn" data-tag="nature">自然</button>
-            <button class="tag-btn" data-tag="food">美食</button>
+        <!-- 模块切换按钮 -->
+        <div class="module-tabs">
+            <button class="module-btn active" data-module="photos">壹壹图片</button>
+            <button class="module-btn" data-module="videos">壹壹视频</button>
         </div>
         
-        <!-- 图片网格 -->
-        <div class="photo-grid">
-            <!-- 旅行分类图片 -->
-            <div class="photo-item travel">
-                <img src="/image/album/travel/photo1.jpg" alt="旅行照片1" data-src="/image/album/travel/photo1.jpg">
-                <div class="photo-overlay">
-                    <span>旅行</span>
-                </div>
-            </div>
-            <div class="photo-item travel">
-                <img src="/image/album/travel/photo2.jpg" alt="旅行照片2" data-src="/image/album/travel/photo2.jpg">
-                <div class="photo-overlay">
-                    <span>旅行</span>
-                </div>
-            </div>
-            <div class="photo-item travel">
-                <img src="/image/album/travel/photo3.jpg" alt="旅行照片3" data-src="/image/album/travel/photo3.jpg">
-                <div class="photo-overlay">
-                    <span>旅行</span>
-                </div>
+        <!-- 壹壹图片模块 -->
+        <div class="module-content active" id="photos-module">
+            <!-- 相册分类标签 -->
+            <div class="album-tags">
+                <button class="tag-btn active" data-tag="all">全部</button>
+                <button class="tag-btn" data-tag="travel">旅行</button>
+                <button class="tag-btn" data-tag="life">生活</button>
+                <button class="tag-btn" data-tag="nature">自然</button>
+                <button class="tag-btn" data-tag="food">美食</button>
             </div>
             
-            <!-- 生活分类图片 -->
-            <div class="photo-item life">
-                <img src="/image/album/life/photo1.jpg" alt="生活照片1" data-src="/image/album/life/photo1.jpg">
-                <div class="photo-overlay">
-                    <span>生活</span>
-                </div>
-            </div>
-            <div class="photo-item life">
-                <img src="/image/album/life/photo2.jpg" alt="生活照片2" data-src="/image/album/life/photo2.jpg">
-                <div class="photo-overlay">
-                    <span>生活</span>
-                </div>
-            </div>
-            <div class="photo-item life">
-                <img src="/image/album/life/photo3.jpg" alt="生活照片3" data-src="/image/album/life/photo3.jpg">
-                <div class="photo-overlay">
-                    <span>生活</span>
-                </div>
+            <!-- 图片网格 -->
+            <div class="photo-grid" id="photo-grid">
+                <!-- 图片将通过JavaScript动态加载 -->
             </div>
             
-            <!-- 自然分类图片 -->
-            <div class="photo-item nature">
-                <img src="/image/album/nature/photo1.jpg" alt="自然照片1" data-src="/image/album/nature/photo1.jpg">
-                <div class="photo-overlay">
-                    <span>自然</span>
-                </div>
-            </div>
-            <div class="photo-item nature">
-                <img src="/image/album/nature/photo2.jpg" alt="自然照片2" data-src="/image/album/nature/photo2.jpg">
-                <div class="photo-overlay">
-                    <span>自然</span>
-                </div>
-            </div>
-            <div class="photo-item nature">
-                <img src="/image/album/nature/photo3.jpg" alt="自然照片3" data-src="/image/album/nature/photo3.jpg">
-                <div class="photo-overlay">
-                    <span>自然</span>
-                </div>
-            </div>
-            
-            <!-- 美食分类图片 -->
-            <div class="photo-item food">
-                <img src="/image/album/food/photo1.jpg" alt="美食照片1" data-src="/image/album/food/photo1.jpg">
-                <div class="photo-overlay">
-                    <span>美食</span>
-                </div>
-            </div>
-            <div class="photo-item food">
-                <img src="/image/album/food/photo2.jpg" alt="美食照片2" data-src="/image/album/food/photo2.jpg">
-                <div class="photo-overlay">
-                    <span>美食</span>
-                </div>
-            </div>
-            <div class="photo-item food">
-                <img src="/image/album/food/photo3.jpg" alt="美食照片3" data-src="/image/album/food/photo3.jpg">
-                <div class="photo-overlay">
-                    <span>美食</span>
-                </div>
+            <!-- 分页按钮 -->
+            <div class="pagination" id="photo-pagination">
+                <button class="page-btn" id="prev-photo-btn" disabled>上一页</button>
+                <span class="page-info" id="photo-page-info">第 1 页 / 共 1 页</span>
+                <button class="page-btn" id="next-photo-btn" disabled>下一页</button>
             </div>
         </div>
         
-        <!-- 图片查看模态框 -->
-        <div id="imageModal" class="modal">
+        <!-- 壹壹视频模块 -->
+        <div class="module-content" id="videos-module">
+            <!-- 视频分类标签 -->
+            <div class="album-tags">
+                <button class="tag-btn active" data-tag="all">全部</button>
+                <button class="tag-btn" data-tag="life">生活</button>
+            </div>
+            
+            <!-- 视频网格 -->
+            <div class="photo-grid" id="video-grid">
+                <!-- 视频将通过JavaScript动态加载 -->
+            </div>
+            
+            <!-- 分页按钮 -->
+            <div class="pagination" id="video-pagination">
+                <button class="page-btn" id="prev-video-btn" disabled>上一页</button>
+                <span class="page-info" id="video-page-info">第 1 页 / 共 1 页</span>
+                <button class="page-btn" id="next-video-btn" disabled>下一页</button>
+            </div>
+        </div>
+        
+        <!-- 媒体查看模态框 -->
+        <div id="mediaModal" class="modal">
             <span class="close">&times;</span>
-            <img class="modal-content" id="modalImage">
+            <div class="modal-content-container">
+                <img class="modal-content" id="modalImage" style="display: none;">
+                <video class="modal-content" id="modalVideo" controls style="display: none;">
+                    <source id="modalVideoSource" src="" type="video/mp4">
+                </video>
+            </div>
             <div id="caption"></div>
         </div>
     </div>
     
     <script>
-        // 图片查看功能
-        var modal = document.getElementById("imageModal");
-        var modalImg = document.getElementById("modalImage");
-        var captionText = document.getElementById("caption");
-        var photos = document.getElementsByClassName("photo-item");
+        // 当前状态
+        let currentModule = 'photos';
+        let currentPhotoPage = 1;
+        let currentVideoPage = 1;
+        let currentPhotoTag = 'all';
+        let currentVideoTag = 'all';
         
-        for (var i = 0; i < photos.length; i++) {
-            photos[i].onclick = function() {
-                modal.style.display = "block";
-                var img = this.getElementsByTagName("img")[0];
-                modalImg.src = img.getAttribute("data-src");
-                captionText.innerHTML = img.alt;
+        // DOM元素
+        const moduleBtns = document.getElementsByClassName('module-btn');
+        const moduleContents = document.getElementsByClassName('module-content');
+        const photoGrid = document.getElementById('photo-grid');
+        const videoGrid = document.getElementById('video-grid');
+        const photoPagination = document.getElementById('photo-pagination');
+        const videoPagination = document.getElementById('video-pagination');
+        const prevPhotoBtn = document.getElementById('prev-photo-btn');
+        const nextPhotoBtn = document.getElementById('next-photo-btn');
+        const photoPageInfo = document.getElementById('photo-page-info');
+        const prevVideoBtn = document.getElementById('prev-video-btn');
+        const nextVideoBtn = document.getElementById('next-video-btn');
+        const videoPageInfo = document.getElementById('video-page-info');
+        const modal = document.getElementById('mediaModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalVideoSource = document.getElementById('modalVideoSource');
+        const captionText = document.getElementById('caption');
+        const closeBtn = document.getElementsByClassName('close')[0];
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载图片
+            loadPhotos();
+            // 加载视频
+            loadVideos();
+            // 绑定事件
+            bindEvents();
+        });
+        
+        // 绑定事件
+        function bindEvents() {
+            // 模块切换
+            for (let i = 0; i < moduleBtns.length; i++) {
+                moduleBtns[i].onclick = function() {
+                    const module = this.getAttribute('data-module');
+                    switchModule(module);
+                };
             }
+            
+            // 图片分类筛选
+            const photoTagBtns = document.querySelectorAll('#photos-module .tag-btn');
+            for (let i = 0; i < photoTagBtns.length; i++) {
+                photoTagBtns[i].onclick = function() {
+                    currentPhotoTag = this.getAttribute('data-tag');
+                    currentPhotoPage = 1;
+                    // 更新标签按钮状态
+                    for (let j = 0; j < photoTagBtns.length; j++) {
+                        photoTagBtns[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    // 重新加载图片
+                    loadPhotos();
+                };
+            }
+            
+            // 视频分类筛选
+            const videoTagBtns = document.querySelectorAll('#videos-module .tag-btn');
+            for (let i = 0; i < videoTagBtns.length; i++) {
+                videoTagBtns[i].onclick = function() {
+                    currentVideoTag = this.getAttribute('data-tag');
+                    currentVideoPage = 1;
+                    // 更新标签按钮状态
+                    for (let j = 0; j < videoTagBtns.length; j++) {
+                        videoTagBtns[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    // 重新加载视频
+                    loadVideos();
+                };
+            }
+            
+            // 图片分页
+            prevPhotoBtn.onclick = function() {
+                if (currentPhotoPage > 1) {
+                    currentPhotoPage--;
+                    loadPhotos();
+                }
+            };
+            
+            nextPhotoBtn.onclick = function() {
+                const filteredPhotos = getFilteredItems(config.images, currentPhotoTag);
+                const totalPages = Math.ceil(filteredPhotos.length / config.itemsPerPage);
+                if (currentPhotoPage < totalPages) {
+                    currentPhotoPage++;
+                    loadPhotos();
+                }
+            };
+            
+            // 视频分页
+            prevVideoBtn.onclick = function() {
+                if (currentVideoPage > 1) {
+                    currentVideoPage--;
+                    loadVideos();
+                }
+            };
+            
+            nextVideoBtn.onclick = function() {
+                const filteredVideos = getFilteredItems(config.videos, currentVideoTag);
+                const totalPages = Math.ceil(filteredVideos.length / config.itemsPerPage);
+                if (currentVideoPage < totalPages) {
+                    currentVideoPage++;
+                    loadVideos();
+                }
+            };
+            
+            // 关闭模态框
+            closeBtn.onclick = function() {
+                closeModal();
+            };
+            
+            // 点击模态框外部关闭
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            };
+        }
+        
+        // 切换模块
+        function switchModule(module) {
+            currentModule = module;
+            
+            // 更新模块按钮状态
+            for (let i = 0; i < moduleBtns.length; i++) {
+                moduleBtns[i].classList.remove('active');
+            }
+            document.querySelector(`[data-module="${module}"]`).classList.add('active');
+            
+            // 显示对应的模块内容
+            for (let i = 0; i < moduleContents.length; i++) {
+                moduleContents[i].classList.remove('active');
+            }
+            document.getElementById(`${module}-module`).classList.add('active');
+        }
+        
+        // 获取筛选后的项目
+        function getFilteredItems(items, tag) {
+            if (tag === 'all') {
+                return items;
+            }
+            return items.filter(item => item.tag === tag);
+        }
+        
+        // 加载图片
+        function loadPhotos() {
+            const filteredPhotos = getFilteredItems(config.images, currentPhotoTag);
+            const totalPages = Math.ceil(filteredPhotos.length / config.itemsPerPage);
+            
+            // 计算当前页的图片
+            const startIndex = (currentPhotoPage - 1) * config.itemsPerPage;
+            const endIndex = startIndex + config.itemsPerPage;
+            const currentPhotos = filteredPhotos.slice(startIndex, endIndex);
+            
+            // 清空图片网格
+            photoGrid.innerHTML = '';
+            
+            // 添加图片
+            currentPhotos.forEach(photo => {
+                const photoItem = document.createElement('div');
+                photoItem.className = `photo-item ${photo.tag}`;
+                photoItem.innerHTML = `
+                    <img src="${photo.src}" alt="${photo.alt}" data-src="${photo.src}" data-type="image">
+                    <div class="photo-overlay">
+                        <span>${getTagName(photo.tag)}</span>
+                    </div>
+                `;
+                
+                // 绑定点击事件
+                photoItem.onclick = function() {
+                    openModal(photo);
+                };
+                
+                photoGrid.appendChild(photoItem);
+            });
+            
+            // 更新分页信息
+            photoPageInfo.textContent = `第 ${currentPhotoPage} 页 / 共 ${totalPages} 页`;
+            prevPhotoBtn.disabled = currentPhotoPage === 1;
+            nextPhotoBtn.disabled = currentPhotoPage === totalPages;
+        }
+        
+        // 加载视频
+        function loadVideos() {
+            const filteredVideos = getFilteredItems(config.videos, currentVideoTag);
+            const totalPages = Math.ceil(filteredVideos.length / config.itemsPerPage);
+            
+            // 计算当前页的视频
+            const startIndex = (currentVideoPage - 1) * config.itemsPerPage;
+            const endIndex = startIndex + config.itemsPerPage;
+            const currentVideos = filteredVideos.slice(startIndex, endIndex);
+            
+            // 清空视频网格
+            videoGrid.innerHTML = '';
+            
+            // 添加视频
+            currentVideos.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = `photo-item ${video.tag}`;
+                
+                // 使用缩略图作为视频预览
+                const thumbnail = video.thumbnail || video.src.replace('.mp4', '.jpg');
+                
+                videoItem.innerHTML = `
+                    <div class="video-container">
+                        <img src="${thumbnail}" alt="${video.alt}" data-src="${video.src}" data-type="video">
+                        <div class="video-play-icon">▶</div>
+                    </div>
+                    <div class="photo-overlay">
+                        <span>${getTagName(video.tag)}</span>
+                    </div>
+                `;
+                
+                // 绑定点击事件
+                videoItem.onclick = function() {
+                    openModal(video);
+                };
+                
+                videoGrid.appendChild(videoItem);
+            });
+            
+            // 更新分页信息
+            videoPageInfo.textContent = `第 ${currentVideoPage} 页 / 共 ${totalPages} 页`;
+            prevVideoBtn.disabled = currentVideoPage === 1;
+            nextVideoBtn.disabled = currentVideoPage === totalPages;
+        }
+        
+        // 获取标签名称
+        function getTagName(tag) {
+            const tagNames = {
+                'travel': '旅行',
+                'life': '生活',
+                'nature': '自然',
+                'food': '美食'
+            };
+            return tagNames[tag] || tag;
+        }
+        
+        // 打开模态框
+        function openModal(media) {
+            modal.style.display = 'block';
+            
+            if (media.src.endsWith('.mp4') || media.src.endsWith('.webm') || media.src.endsWith('.ogg')) {
+                // 视频
+                modalImg.style.display = 'none';
+                modalVideo.style.display = 'block';
+                modalVideoSource.src = media.src;
+                modalVideo.load();
+                modalVideo.play();
+            } else {
+                // 图片
+                modalVideo.style.display = 'none';
+                modalImg.style.display = 'block';
+                modalImg.src = media.src;
+            }
+            
+            captionText.innerHTML = media.alt;
         }
         
         // 关闭模态框
-        var span = document.getElementsByClassName("close")[0];
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-        
-        // 点击模态框外部关闭
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-        
-        // 图片分类筛选功能
-        var tagBtns = document.getElementsByClassName("tag-btn");
-        var photoItems = document.getElementsByClassName("photo-item");
-        
-        for (var i = 0; i < tagBtns.length; i++) {
-            tagBtns[i].onclick = function() {
-                // 移除所有按钮的active类
-                for (var j = 0; j < tagBtns.length; j++) {
-                    tagBtns[j].classList.remove("active");
-                }
-                // 给当前按钮添加active类
-                this.classList.add("active");
-                
-                var tag = this.getAttribute("data-tag");
-                
-                // 筛选图片
-                for (var k = 0; k < photoItems.length; k++) {
-                    if (tag === "all" || photoItems[k].classList.contains(tag)) {
-                        photoItems[k].style.display = "block";
-                    } else {
-                        photoItems[k].style.display = "none";
-                    }
-                }
-            }
+        function closeModal() {
+            modal.style.display = 'none';
+            // 暂停视频
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
         }
     </script>
 
