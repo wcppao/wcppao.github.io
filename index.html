@@ -127,8 +127,7 @@
                 <div>
                     <a href="/">我的相册博客</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
-                <div class="menu-toggle" onclick="mobileBtn()">
-76; Menu</div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
             <div class="menu" id="mobile-menu">
                 
@@ -147,6 +146,7 @@
     var mobileBtn = function f() {
         var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
         var mobileMenu = document.getElementById("mobile-menu");
+
         if(toggleMenu.classList.contains("active")){
            toggleMenu.classList.remove("active")
             mobileMenu.classList.remove("active")
@@ -166,7 +166,7 @@
         </div>
         
         <!-- 模块切换按钮 -->
-        <div class="module-tabs">
+        <div class="module-toggle">
             <button class="module-btn active" data-module="photos">壹壹图片</button>
             <button class="module-btn" data-module="videos">壹壹视频</button>
         </div>
